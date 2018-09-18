@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/style.css">
+        <title>Adam Blaine</title>
+    </head>
+    <body>
+        <div id="page">
+            <button id="dropdown">
+            <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navbar">
+                    <li><a href="#first">About</a></li>
+                    <li><a href="#middle">Projects</a></li>
+                    <li><a href="#bottom">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="container" id="first">
+                <div id="welcome">
+                    <h1>Hello I am Adam.</h1>
+                    <p>an enthusiatic web developer</p>
+                </div>
+                <div id="arrow">
+                <a href="#middle"><i class="fas fa-arrow-circle-down"></i></a>
+                </div>
+            </div>
+            <div class="container" id="middle">
+                <div id="projects">
+                    <h2>Some of my projects..</h2>
+                    <div id="project-col">
+                        <a target="_blank" href="https://jsadam.github.io/sample_site/" class="project">
+                            <img src="./imgs/site.png">
+                            <h3>Example Bussiness Site</h3>
+                        </a>
+                        <a target="_blank" href="https://jsadam.github.io/todo_app/" class="project">
+                            <img src="./imgs/todo.png">
+                            <h3>Small Todo App</h3>
+                        </a>
+                        <a target="_blank" href="https://jsadam.github.io/giphy_app/" class="project">
+                            <img src="./imgs/giphy.png">
+                            <h3>Giphy App</h3>
+                        </a>    
+                    </div>
+                </div>
+            </div>
+            <div id="bottom">
+                <div id="lets">
+                    <h1>Let's Work Together!</h1>
+                </div>
+                <div>
+                    <form class="contact" action="mailto:adamleebl@gmail.com"><button>Email</button></form>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+        <script>
+            var isX = false;
+            
+            var $ul = $("#navbar");
+            $ul.css("display","none");
+            
+            var $navButton = $("#dropdown");
+            console.log($navButton.hasClass("fa-bars"));
+            $navButton.on("click", function(e){
+                e.preventDefault();
+                if(!isX){
+                    $navButton.fadeOut("fast", function(){
+                        $navButton.html(`<i class="fas fa-times"></i>`);
+                        $navButton.fadeIn("fast");
+                        $navButton.css("font-size", "30px");
+                        
+                        $ul.slideDown(700);
+                        isX = true;
+                    });
+                } else {
+                    $navButton.fadeOut("fast", function(){
+                        $navButton.html(`<i class="fas fa-bars"></i>`);
+                        $navButton.fadeIn("fast");
+                        $navButton.css("font-size", "25px");
+                        
+                        $ul.slideUp(700);
+                        isX = false;
+                    });
+                }
+            });
+            
+            $(`a[href*="#"]`).click(function(event){
+                if(this.hash !== ""){
+                    event.preventDefault();
+                    var hash = this.hash;
+                    
+                    $("html, body").animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function(){
+                        window.location.hash = hash;
+                    })
+                }
+            })
+        </script>
+    </body>
+</html>
